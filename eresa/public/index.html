@@ -1,0 +1,114 @@
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="eresa">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Eresa App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+    html                    { overflow-y:scroll; }
+    body                    { padding-top:50px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="js/app.js"></script> <!-- load up our controller -->
+    <script src="js/services/persons.js"></script> <!-- load our Person service -->
+    <script src="js/services/restos.js"></script> <!-- load our Person service -->
+    <script src="js/controllers/persons.js"></script> <!-- load up our controller -->
+    <script src="js/controllers/restos.js"></script> <!-- load up our controller -->
+
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL PERSONS -->
+<body>
+    <div ng-controller="personMainController" class="container">
+
+        <!-- HEADER AND PERSON COUNT -->
+        <div class="jumbotron text-center">
+            <h1>My Person List <span class="label label-info">{{ persons.length }}</span></h1>
+        </div>
+
+        <!-- PERSONS LIST -->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <div class="panel panel-primary">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-4">Name</th>
+                                <th class="col-sm-4">Surname</th>
+                                <th class="col-sm-4">Email</th>
+                                <th class="col-sm-4"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="person in persons">
+                                <td>{{ person.name }}</td>
+                                <td>{{ person.surname }}</td>
+                                <td>{{ person.email }}</td>
+                                <td><button class="btn btn-danger btn-block" ng-click="deletePerson(person._id)"><i class="glyphicon glyphicon-trash"></i></button></td>
+                            </tr>
+                            <form>
+                                <tr>
+                                    <td><input type="text" class="form-control input-lg text-center" placeholder="Name" ng-model="formPersonData.name"></td>
+                                    <td><input type="text" class="form-control input-lg text-center" placeholder="Surname" ng-model="formPersonData.surname"></td>
+                                    <td><input type="text" class="form-control input-lg text-center" placeholder="Email" ng-model="formPersonData.email"></td>
+                                    <td colspan="2"><button type="submit" class="btn btn-primary btn-lg" ng-click="createPerson()">Add</button></td>
+                                </tr>
+                            </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="restoMainController" class="container">
+
+        <!-- HEADER AND PERSON COUNT -->
+        <div class="jumbotron text-center">
+            <h1>My Resto List <span class="label label-info">{{ restos.length }}</span></h1>
+        </div>
+
+        <!-- PERSONS LIST -->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <div class="panel panel-primary">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-4">Name</th>
+                                <th class="col-sm-4">Tel</th>
+                                <th class="col-sm-4">Location</th>
+                                <th class="col-sm-4"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="resto in restos">
+                                <td>{{ resto.name }}</td>
+                                <td>{{ resto.tel }}</td>
+                                <td>{{ resto.location }}</td>
+                                <td><button class="btn btn-danger btn-block" ng-click="deleteResto(resto._id)"><i class="glyphicon glyphicon-trash"></i></button></td>
+                            </tr>
+                            <form>
+                                <tr>
+                                    <td><input type="text" class="form-control input-lg text-center" placeholder="Name" ng-model="formRestoData.name"></td>
+                                    <td><input type="text" class="form-control input-lg text-center" placeholder="Tel" ng-model="formRestoData.tel"></td>
+                                    <td><input type="text" class="form-control input-lg text-center" placeholder="Location" ng-model="formRestoData.location"></td>
+                                    <td colspan="2"><button type="submit" class="btn btn-primary btn-lg" ng-click="createResto()">Add</button></td>
+                                </tr>
+                            </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
